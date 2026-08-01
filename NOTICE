@@ -1,0 +1,61 @@
+FCL Turnip A6xx Driver Plugin
+Copyright (C) 2026 2555355
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+========================================================================
+THIRD-PARTY ATTRIBUTION NOTICES
+========================================================================
+
+1. Mesa (Turnip / freedreno Vulkan driver)
+   ----------------------------------------
+   The bundled native library `libvulkan_freedreno.so` (located in
+   app/src/main/jniLibs/arm64-v8a/) is a compiled build of the Mesa
+   freedreno (Turnip) Vulkan driver.
+
+   Mesa is licensed under the MIT License. Copyright (c) The Mesa
+   developers / contributors, and the freedreno contributors. See the
+   upstream project for the full copyright notice and contributor list:
+
+     Source : https://gitlab.freedesktop.org/mesa/mesa
+     License: MIT (https://docs.mesa3d.org/repository-license.html)
+
+   The MIT license requires that the above copyright notice and this
+   permission notice be included in all copies or substantial portions
+   of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
+   OF ANY KIND.
+
+2. Banners-Turnip (A6xx/A7xx driver build)
+   ----------------------------------------
+   The prebuilt driver was obtained from the Banners-Turnip repository
+   (branch A6xx/A7xx), which provides automated Mesa Turnip builds for
+   Qualcomm Adreno GPUs.
+
+     Source : https://github.com/The412Banner/Banners-Turnip
+     Branch : A6xx/A7xx
+     License: GPL-3.0
+
+3. FCLDriverPlugin (plugin template)
+   ----------------------------------
+   The Gradle / Kotlin / AndroidManifest project structure is derived
+   from the official FCLDriverPlugin template published by the FCL-Team.
+
+     Source : https://github.com/FCL-Team/FCLDriverPlugin
+
+4. FCL (FCL Launcher)
+   -------------------
+   This plugin is consumed by the FCL launcher via the `fclPlugin` and
+   `driver` Android manifest meta-data entries.
+
+     Source : https://github.com/FCL-Team/FCL
