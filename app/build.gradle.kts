@@ -11,8 +11,8 @@ android {
         applicationId = "com.mio.plugin.renderer"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
     }
 
     buildTypes {
@@ -22,14 +22,14 @@ android {
         configureEach {
             //应用名
             //app name
-            resValue("string","app_name","Turnip A6xx 26.0.0")
+            resValue("string","app_name","Turnip A6xx 26.3.0")
             //包名后缀
             //package name Suffix
-            applicationIdSuffix = ".turnipa6xx2600"
+            applicationIdSuffix = ".turnipa6xx2630"
 
             //驱动在启动器内显示的名称
             //The name displayed by the driver in the launcher
-            manifestPlaceholders["driver"] = "Turnip A6xx 26.0.0"
+            manifestPlaceholders["driver"] = "Turnip A6xx 26.3.0"
         }
     }
     compileOptions {

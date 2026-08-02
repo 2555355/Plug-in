@@ -22,16 +22,17 @@ THIRD-PARTY ATTRIBUTION NOTICES
    ----------------------------------------
    The bundled native library `libvulkan_freedreno.so` (located in
    app/src/main/jniLibs/arm64-v8a/) is a compiled build of the Mesa
-   freedreno (Turnip) Vulkan driver, Mesa 26.0.0-devel (Vulkan 1.4.335).
+   freedreno (Turnip) Vulkan driver, Mesa 26.3.0-devel (Vulkan 1.4.354).
 
-   Source: K11MCH1/AdrenoToolsDrivers v26.0.0-rc08 (Turnip_v26.0.0_R8)
-   Based on Mesa main commit 5ac41be677.
+   Source: Banners-Turnip v26.3.0-20260801-r5 (A6xx/A7xx standard build)
+   Based on Mesa main commit 84f090168c (2026-08-01).
 
-   The DT_SONAME has been patched from "vulkan.ad07xx.so" to
+   The DT_SONAME has been patched from "libvulkan_freedreno.so" to
    "vulkan.adreno.so" to match the convention used by the official FCL
    Turnip driver plugins for FCL's linkerhook ICD substitution. Only the
-   SONAME string in the ELF .dynstr table was modified; no code or other
-   data was changed.
+   SONAME string in the ELF .dynstr table was modified (21 bytes in the
+   string slot, zero-padded); no code or other data was changed. The
+   patch is reproducible via tools/patch_soname.py in this repository.
 
    Mesa is licensed under the MIT License. Copyright (c) The Mesa
    developers / contributors, and the freedreno contributors. See the
@@ -45,20 +46,20 @@ THIRD-PARTY ATTRIBUTION NOTICES
    of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
    OF ANY KIND.
 
-2. K11MCH1/AdrenoToolsDrivers (driver distribution)
-   -------------------------------------------------
+2. Banners-Turnip (driver distribution)
+   -------------------------------------
    The prebuilt `libvulkan_freedreno.so` was obtained from the
-   K11MCH1/AdrenoToolsDrivers repository (release v26.0.0-rc08, asset
-   family `Turnip_v26.0.0_R8`), which repackages automated Mesa Turnip
-   builds for Qualcomm Adreno GPUs for use with Android emulators.
+   Banners-Turnip repository (release v26.3.0-20260801-r5), which
+   provides automated Mesa Turnip builds for Qualcomm Adreno GPUs.
+   The A6xx/A7xx standard build is pure Mesa main with no source patches
+   (only three inline NDK r29 compatibility fixes applied at build time).
+   The repository notes: "AUTOMATED BUILD — Not guaranteed stable."
 
-   The repository itself does not carry a separate LICENSE file; its
-   maintainer explicitly states "I do NOT make/code the drivers. Mesa
-   does. I merely 'compile' them." The driver binary therefore remains
-   governed by the upstream Mesa MIT License cited in section 1 above.
+   The driver binary therefore remains governed by the upstream Mesa
+   MIT License cited in section 1 above.
 
-     Source : https://github.com/K11MCH1/AdrenoToolsDrivers
-     Release: v26.0.0-rc08 (Turnip_v26.0.0_R8)
+     Source : https://github.com/The412Banner/Banners-Turnip
+     Release: v26.3.0-20260801-r5 (A6xx/A7xx standard)
 
 3. FCLDriverPlugin (plugin template)
    ----------------------------------

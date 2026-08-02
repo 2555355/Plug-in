@@ -8,11 +8,11 @@
 
 ### 特性
 
-- **驱动版本**：Mesa Turnip `26.0.0-devel` (git-`5ac41be677`)，Vulkan `1.4.335`
-- **驱动来源**：[K11MCH1/AdrenoToolsDrivers](https://github.com/K11MCH1/AdrenoToolsDrivers) `v26.0.0-rc08` (Turnip_v26.0.0_R8)
+- **驱动版本**：Mesa Turnip `26.3.0-devel` (git-`84f090168c`)，Vulkan `1.4.354`
+- **驱动来源**：[Banners-Turnip](https://github.com/The412Banner/Banners-Turnip) `v26.3.0-20260801-r5` (A6xx/A7xx 标准版)
 - **目标 GPU**：Qualcomm Adreno A6xx / A7xx
 - **架构**：`arm64-v8a`
-- **SONAME 适配**：已将驱动 `DT_SONAME` 由 `vulkan.ad07xx.so` 修改为 `vulkan.adreno.so`，以匹配 FCL `linkerhook` 的 ICD 替换约定（仅修改 ELF `.dynstr` 字符串，未改动任何代码或数据）
+- **SONAME 适配**：已将驱动 `DT_SONAME` 由 `libvulkan_freedreno.so` 修改为 `vulkan.adreno.so`，以匹配 FCL `linkerhook` 的 ICD 替换约定（仅修改 ELF `.dynstr` 字符串并零填充，未改动任何代码或数据，可通过 `tools/patch_soname.py` 复现）
 - **插件模板**：基于 [FCL-Team/FCLDriverPlugin](https://github.com/FCL-Team/FCLDriverPlugin)
 
 ### 工作原理
@@ -23,7 +23,7 @@ FCL 启动器在运行时通过原生 `linkerhook` 拦截 `dlopen` 调用，将�
 
 1. 从 [Releases](../../releases) 下载最新 APK
 2. 在已安装 FCL 启动器的 Android 设备上安装该 APK
-3. 在 FCL 启动器的驱动管理中选择 `Turnip A6xx 26.0.0`
+3. 在 FCL 启动器的驱动管理中选择 `Turnip A6xx 26.3.0`
 
 ## 构建
 
