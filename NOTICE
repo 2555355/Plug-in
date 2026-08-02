@@ -45,15 +45,20 @@ THIRD-PARTY ATTRIBUTION NOTICES
    of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
    OF ANY KIND.
 
-2. Banners-Turnip (A6xx/A7xx driver build)
-   ----------------------------------------
-   The prebuilt driver was obtained from the Banners-Turnip repository
-   (branch A6xx/A7xx), which provides automated Mesa Turnip builds for
-   Qualcomm Adreno GPUs.
+2. K11MCH1/AdrenoToolsDrivers (driver distribution)
+   -------------------------------------------------
+   The prebuilt `libvulkan_freedreno.so` was obtained from the
+   K11MCH1/AdrenoToolsDrivers repository (release v26.0.0-rc08, asset
+   family `Turnip_v26.0.0_R8`), which repackages automated Mesa Turnip
+   builds for Qualcomm Adreno GPUs for use with Android emulators.
 
-     Source : https://github.com/The412Banner/Banners-Turnip
-     Branch : A6xx/A7xx
-     License: GPL-3.0
+   The repository itself does not carry a separate LICENSE file; its
+   maintainer explicitly states "I do NOT make/code the drivers. Mesa
+   does. I merely 'compile' them." The driver binary therefore remains
+   governed by the upstream Mesa MIT License cited in section 1 above.
+
+     Source : https://github.com/K11MCH1/AdrenoToolsDrivers
+     Release: v26.0.0-rc08 (Turnip_v26.0.0_R8)
 
 3. FCLDriverPlugin (plugin template)
    ----------------------------------

@@ -57,11 +57,11 @@ jobs:
           body: |
             FCL launcher Turnip driver plugin — A6xx/A7xx build.
 
-            - Driver: Mesa Turnip v26.3.0 (A6xx/A7xx, KGSL, Vulkan 1.4.354)
-            - Source: https://github.com/The412Banner/Banners-Turnip (branch A6xx/A7xx)
+            - Driver: Mesa Turnip 26.0.0-devel (git-5ac41be677, Vulkan 1.4.335)
+            - Source: https://github.com/K11MCH1/AdrenoToolsDrivers (release v26.0.0-rc08, Turnip_v26.0.0_R8)
             - Plugin template: https://github.com/FCL-Team/FCLDriverPlugin
             - License: GPL-3.0 (see LICENSE / NOTICE for third-party attributions)
 
             Install the APK on a device with the FCL launcher to register the
-            `Turnip A6xx 26.3.0` driver.
+            `Turnip A6xx 26.0.0` driver.
           files: artifact/*.apk
