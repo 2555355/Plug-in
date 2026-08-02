@@ -22,11 +22,16 @@ THIRD-PARTY ATTRIBUTION NOTICES
    ----------------------------------------
    The bundled native library `libvulkan_freedreno.so` (located in
    app/src/main/jniLibs/arm64-v8a/) is a compiled build of the Mesa
-   freedreno (Turnip) Vulkan driver, Mesa 25.0.0-devel.
+   freedreno (Turnip) Vulkan driver, Mesa 26.0.0-devel (Vulkan 1.4.335).
 
-   The DT_SONAME is "vulkan.adreno.so", matching the convention used by
-   the official FCL Turnip driver plugins for FCL's linkerhook ICD
-   substitution.
+   Source: K11MCH1/AdrenoToolsDrivers v26.0.0-rc08 (Turnip_v26.0.0_R8)
+   Based on Mesa main commit 5ac41be677.
+
+   The DT_SONAME has been patched from "vulkan.ad07xx.so" to
+   "vulkan.adreno.so" to match the convention used by the official FCL
+   Turnip driver plugins for FCL's linkerhook ICD substitution. Only the
+   SONAME string in the ELF .dynstr table was modified; no code or other
+   data was changed.
 
    Mesa is licensed under the MIT License. Copyright (c) The Mesa
    developers / contributors, and the freedreno contributors. See the
