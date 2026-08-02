@@ -1,6 +1,6 @@
 # FCL Turnip A6xx Driver Plugin
 
-一个面向 [FCL 启动器](https://github.com/FCL-Team/FCL) 的 Turnip (Mesa freedreno) Vulkan 驱动插件，专为高通 Adreno **A6xx / A7xx** 系列 GPU 适配。
+一个面向 [FCL 启动器](https://github.com/FCL-Team/FoldCraftLauncher) 的 Turnip (Mesa freedreno) Vulkan 驱动插件，专为高通 Adreno **A6xx / A7xx** 系列 GPU 适配。
 
 ## 介绍
 
