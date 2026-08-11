@@ -39,7 +39,7 @@ FCL 启动器加载驱动时，通过 `driver_helper.c` 的 `linker_ns_dlopen` �
 
 - 本项目代码采用 **GPL-3.0** 许可，详见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)
 - 内置的 Mesa Turnip 驱动采用 **MIT** 许可，版权归 Mesa 开发者所有
-- 第三方组件（Mesa、whitebelyash/AdrenoToolsDrivers、FCLDriverPlugin、FCL）的完整归属声明见 [NOTICE](NOTICE)
+- 第三方组件（Mesa MIT、whitebelyash/AdrenoToolsDrivers GPL-3.0、FCLDriverPlugin、FCL）的完整归属声明见 [NOTICE](NOTICE)
 
 ## AI 声明
 

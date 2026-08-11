@@ -63,11 +63,26 @@ THIRD-PARTY ATTRIBUTION NOTICES
    file mainline-turnip-sync-V31.zip), which repackages Turnip builds
    for use with Adreno-tools-based launchers.
 
-   The repository does not ship a top-level LICENSE of its own; the
-   driver binary remains governed by the upstream Mesa MIT License
-   cited in section 1 above.
+   The whitebelyash/AdrenoToolsDrivers repository itself is licensed
+   under the GNU General Public License v3.0 (GPL-3.0). That license
+   covers the repository's own build scripts, patches and metadata
+   (e.g. turnip_builder.sh, the patches/ directory, meta.json). The
+   build is based on the turnip/gen8 branch of
+   https://github.com/whitebelyash/mesa-unified which adds out-of-tree
+   Adreno 8XX support hacks on top of upstream Mesa.
+
+   The driver binary (`libvulkan_freedreno.so`) is a compiled build of
+   the Mesa freedreno Vulkan driver and remains governed by the
+   upstream Mesa MIT License cited in section 1 above. The GPL-3.0 of
+   the packaging repository applies to its build infrastructure, not
+   to the compiled Mesa code (which the repository does not author);
+   this project re-distributes only the compiled driver binary, not
+   the build scripts or patches.
+
+   GPL-3.0 is compatible with this project's own GPL-3.0 license.
 
      Source : https://github.com/whitebelyash/AdrenoToolsDrivers
+     License: GPL-3.0 (build scripts / patches / metadata)
      Release: tu_v31 (mainline-turnip-sync-V31)
 
 3. FCLDriverPlugin (plugin template)
