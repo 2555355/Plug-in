@@ -22,17 +22,27 @@ THIRD-PARTY ATTRIBUTION NOTICES
    ----------------------------------------
    The bundled native library `libvulkan_freedreno.so` (located in
    app/src/main/jniLibs/arm64-v8a/) is a compiled build of the Mesa
-   freedreno (Turnip) Vulkan driver, Mesa 26.3.0-devel (Vulkan 1.4.354).
+   freedreno (Turnip) Vulkan driver, Mesa 26.3.0-devel (git-9c475fc367),
+   reporting Vulkan 1.4.335.
 
-   Source: Banners-Turnip v26.3.0-20260801-r5 (A6xx/A7xx standard build)
-   Based on Mesa main commit 84f090168c (2026-08-01).
+   The prebuilt binary was obtained from the
+   whitebelyash/AdrenoToolsDrivers repository (release tu_v31,
+   "mainline-turnip-sync-V31"). The author describes it as
+   "Upstream Turnip driver with some hacks, built from the turnip/gen8
+   branch." It is therefore a modified build, NOT a verbatim build of
+   upstream Mesa main; the modifications are authored by whitebelyash
+   and are not part of the official Mesa source tree.
 
    The DT_SONAME has been patched from "libvulkan_freedreno.so" to
-   "vulkan.adreno.so" to match the convention used by the official FCL
-   Turnip driver plugins for FCL's linkerhook ICD substitution. Only the
-   SONAME string in the ELF .dynstr table was modified (21 bytes in the
-   string slot, zero-padded); no code or other data was changed. The
-   patch is reproducible via tools/patch_soname.py in this repository.
+   "vulkan.adreno.so" following the convention used by official FCL
+   Turnip driver plugins. FCL loads the driver by the hardcoded file
+   name "libvulkan_freedreno.so" (via driver_helper.c linker_ns_dlopen)
+   and its linkerhook intercepts any dlopen request whose file name
+   contains "vulkan." to return this driver handle; the SONAME value
+   itself does not drive the substitution but is kept consistent with
+   the upstream plugin convention. Only the SONAME string in the ELF
+   .dynstr table was modified (zero-padded); no code or other data was
+   changed. The patch is reproducible via tools/patch_soname.py.
 
    Mesa is licensed under the MIT License. Copyright (c) The Mesa
    developers / contributors, and the freedreno contributors. See the
@@ -46,20 +56,19 @@ THIRD-PARTY ATTRIBUTION NOTICES
    of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
    OF ANY KIND.
 
-2. Banners-Turnip (driver distribution)
-   -------------------------------------
+2. whitebelyash/AdrenoToolsDrivers (driver distribution)
+   -------------------------------------------------------
    The prebuilt `libvulkan_freedreno.so` was obtained from the
-   Banners-Turnip repository (release v26.3.0-20260801-r5), which
-   provides automated Mesa Turnip builds for Qualcomm Adreno GPUs.
-   The A6xx/A7xx standard build is pure Mesa main with no source patches
-   (only three inline NDK r29 compatibility fixes applied at build time).
-   The repository notes: "AUTOMATED BUILD — Not guaranteed stable."
+   whitebelyash/AdrenoToolsDrivers repository (release tu_v31,
+   file mainline-turnip-sync-V31.zip), which repackages Turnip builds
+   for use with Adreno-tools-based launchers.
 
-   The driver binary therefore remains governed by the upstream Mesa
-   MIT License cited in section 1 above.
+   The repository does not ship a top-level LICENSE of its own; the
+   driver binary remains governed by the upstream Mesa MIT License
+   cited in section 1 above.
 
-     Source : https://github.com/The412Banner/Banners-Turnip
-     Release: v26.3.0-20260801-r5 (A6xx/A7xx standard)
+     Source : https://github.com/whitebelyash/AdrenoToolsDrivers
+     Release: tu_v31 (mainline-turnip-sync-V31)
 
 3. FCLDriverPlugin (plugin template)
    ----------------------------------

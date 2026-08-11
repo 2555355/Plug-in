@@ -52,16 +52,16 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.1.0
-          name: FCL Turnip A6xx Plugin v1.1.0
+          tag_name: v1.2.0
+          name: FCL Turnip A6xx Plugin v1.2.0
           body: |
             FCL launcher Turnip driver plugin — A6xx/A7xx build.
 
-            - Driver: Mesa Turnip 26.3.0-devel (git-84f090168c, Vulkan 1.4.354)
-            - Source: https://github.com/The412Banner/Banners-Turnip (release v26.3.0-20260801-r5, A6xx/A7xx standard)
+            - Driver: Mesa Turnip 26.3.0-devel (git-9c475fc367, Vulkan 1.4.335)
+            - Source: https://github.com/whitebelyash/AdrenoToolsDrivers (release tu_v31, mainline-turnip-sync-V31, turnip/gen8 branch)
             - Plugin template: https://github.com/FCL-Team/FCLDriverPlugin
             - License: GPL-3.0 (see LICENSE / NOTICE for third-party attributions)
 
             Install the APK on a device with the FCL launcher to register the
-            `Turnip A6xx 26.3.0` driver.
+            `Turnip A6xx v31` driver.
           files: artifact/*.apk

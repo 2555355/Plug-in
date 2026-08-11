@@ -8,22 +8,22 @@
 
 ### 特性
 
-- **驱动版本**：Mesa Turnip `26.3.0-devel` (git-`84f090168c`)，Vulkan `1.4.354`
-- **驱动来源**：[Banners-Turnip](https://github.com/The412Banner/Banners-Turnip) `v26.3.0-20260801-r5` (A6xx/A7xx 标准版)
+- **驱动版本**：Mesa Turnip `26.3.0-devel` (git-`9c475fc367`)，Vulkan `1.4.335`
+- **驱动来源**：[whitebelyash/AdrenoToolsDrivers](https://github.com/whitebelyash/AdrenoToolsDrivers) `tu_v31` (mainline-turnip-sync-V31，基于 turnip/gen8 分支构建)
 - **目标 GPU**：Qualcomm Adreno A6xx / A7xx
 - **架构**：`arm64-v8a`
-- **SONAME 适配**：已将驱动 `DT_SONAME` 由 `libvulkan_freedreno.so` 修改为 `vulkan.adreno.so`，以匹配 FCL `linkerhook` 的 ICD 替换约定（仅修改 ELF `.dynstr` 字符串并零填充，未改动任何代码或数据，可通过 `tools/patch_soname.py` 复现）
+- **SONAME 适配**：已将驱动 `DT_SONAME` 由 `libvulkan_freedreno.so` 修改为 `vulkan.adreno.so`，遵循 FCL Turnip 驱动插件约定（仅修改 ELF `.dynstr` 字符串并零填充，未改动任何代码或数据，可通过 `tools/patch_soname.py` 复现）
 - **插件模板**：基于 [FCL-Team/FCLDriverPlugin](https://github.com/FCL-Team/FCLDriverPlugin)
 
 ### 工作原理
 
-FCL 启动器在运行时通过原生 `linkerhook` 拦截 `dlopen` 调用，将应用对系统 Vulkan ICD 的加载重定向到本插件内置的 `libvulkan_freedreno.so`，从而用 Turnip 驱动替代厂商驱动。本插件 APK 仅承担驱动分发职责，本身不含 UI 逻辑。
+FCL 启动器加载驱动时，通过 `driver_helper.c` 的 `linker_ns_dlopen` 以硬编码文件名 `libvulkan_freedreno.so` 从插件的 `nativeLibraryDir` 加载本驱动；随后其原生 `linkerhook` 拦截任何文件名含 `vulkan.` 的 `dlopen` 请求，统一返回本驱动的 handle，从而用 Turnip 替代系统厂商 Vulkan ICD。本插件 APK 仅承担驱动分发职责，本身不含 UI 逻辑。
 
 ## 安装
 
 1. 从 [Releases](../../releases) 下载最新 APK
 2. 在已安装 FCL 启动器的 Android 设备上安装该 APK
-3. 在 FCL 启动器的驱动管理中选择 `Turnip A6xx 26.3.0`
+3. 在 FCL 启动器的驱动管理中选择 `Turnip A6xx v31`
 
 ## 构建
 
@@ -39,7 +39,7 @@ FCL 启动器在运行时通过原生 `linkerhook` 拦截 `dlopen` 调用，将�
 
 - 本项目代码采用 **GPL-3.0** 许可，详见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)
 - 内置的 Mesa Turnip 驱动采用 **MIT** 许可，版权归 Mesa 开发者所有
-- 第三方组件（Mesa、K11MCH1/AdrenoToolsDrivers、FCLDriverPlugin、FCL）的完整归属声明见 [NOTICE](NOTICE)
+- 第三方组件（Mesa、whitebelyash/AdrenoToolsDrivers、FCLDriverPlugin、FCL）的完整归属声明见 [NOTICE](NOTICE)
 
 ## AI 声明
 
@@ -47,6 +47,6 @@ FCL 启动器在运行时通过原生 `linkerhook` 拦截 `dlopen` 调用，将�
 
 需要明确的是：
 
-- **驱动本身并非 AI 生成**。内置的 `libvulkan_freedreno.so` 是由 Mesa 项目上游开发者编写、并由 K11MCH1/AdrenoToolsDrivers 项目编译发布的二进制产物，本项目仅做打包与分发，不包含对驱动代码的任何修改（除前述 SONAME 字符串适配外）。
+- **驱动本身并非 AI 生成**。内置的 `libvulkan_freedreno.so` 是由 Mesa 项目上游开发者编写、并由 whitebelyash/AdrenoToolsDrivers 项目基于 turnip/gen8 分支编译发布的二进制产物，本项目仅做打包与分发，不包含对驱动代码的任何修改（除前述 SONAME 字符串适配外）。
 - **AI 不持有版权**。AI 辅助产出的工程代码与文档，其版权归属本项目维护者，并按 GPL-3.0 许可发布；其中涉及第三方组件的部分，相应权利与义务仍以各上游项目的原始许可为准。
 - **使用者责任**。本插件按“现状”（AS IS）提供，不附带任何明示或暗示的担保。因使用本插件产生的任何直接或间接损失，维护者与 AI 工具提供方均不承担责任。
