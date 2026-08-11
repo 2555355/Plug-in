@@ -24,6 +24,10 @@ jobs:
             echo "SIGNING_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> $GITHUB_ENV
             echo "SIGNING_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> $GITHUB_ENV
             echo "Keystore decoded successfully"
+            echo "Keystore file info:"
+            ls -la release.keystore
+            file release.keystore
+            keytool -list -keystore release.keystore -storepass "$SIGNING_STORE_PASSWORD" 2>&1 | head -10
           else
             echo "No signing keystore secret found; build will use debug signing"
           fi
@@ -53,6 +57,15 @@ jobs:
           mkdir -p artifact
           cp app/build/outputs/apk/release/*.apk artifact/FCLTurnipA6xx-Plugin.apk
           ls -la artifact/
+
+      - name: Verify APK signature
+        run: |
+          APK=artifact/FCLTurnipA6xx-Plugin.apk
+          echo "=== APK file ==="
+          ls -la "$APK"
+          echo "=== apksigner verify ==="
+          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --verbose --print-certs "$APK"
+          echo "=== exit code: $? ==="
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
