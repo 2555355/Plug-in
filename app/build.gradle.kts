@@ -15,9 +15,19 @@ android {
         versionName = "1.2.0"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("../release.keystore")
+            storePassword = System.getenv("SIGNING_STORE_PASSWORD") ?: "FCLTurnip2026"
+            keyAlias = System.getenv("SIGNING_KEY_ALIAS") ?: "fcl-turnip-a6xx"
+            keyPassword = System.getenv("SIGNING_KEY_PASSWORD") ?: "FCLTurnip2026"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
         configureEach {
             //应用名

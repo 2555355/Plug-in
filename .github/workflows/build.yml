@@ -16,6 +16,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Decode signing keystore
+        run: |
+          if [ -n "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" ]; then
+            echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 -d > release.keystore
+            echo "SIGNING_STORE_PASSWORD=${{ secrets.SIGNING_STORE_PASSWORD }}" >> $GITHUB_ENV
+            echo "SIGNING_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> $GITHUB_ENV
+            echo "SIGNING_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> $GITHUB_ENV
+            echo "Keystore decoded successfully"
+          else
+            echo "No signing keystore secret found; build will use debug signing"
+          fi
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
