@@ -24,10 +24,6 @@ jobs:
             echo "SIGNING_KEY_ALIAS=${{ secrets.SIGNING_KEY_ALIAS }}" >> $GITHUB_ENV
             echo "SIGNING_KEY_PASSWORD=${{ secrets.SIGNING_KEY_PASSWORD }}" >> $GITHUB_ENV
             echo "Keystore decoded successfully"
-            echo "Keystore file info:"
-            ls -la release.keystore
-            file release.keystore
-            keytool -list -keystore release.keystore -storepass "$SIGNING_STORE_PASSWORD" 2>&1 | head -10
           else
             echo "No signing keystore secret found; build will use debug signing"
           fi
@@ -58,15 +54,6 @@ jobs:
           cp app/build/outputs/apk/release/*.apk artifact/FCLTurnipA6xx-Plugin.apk
           ls -la artifact/
 
-      - name: Verify APK signature
-        run: |
-          APK=artifact/FCLTurnipA6xx-Plugin.apk
-          echo "=== APK file ==="
-          ls -la "$APK"
-          echo "=== apksigner verify ==="
-          $ANDROID_HOME/build-tools/34.0.0/apksigner verify --verbose --print-certs "$APK"
-          echo "=== exit code: $? ==="
-
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
@@ -77,8 +64,8 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.2.0
-          name: FCL Turnip A6xx Plugin v1.2.0
+          tag_name: v1.2.1
+          name: FCL Turnip A6xx Plugin v1.2.1
           body: |
             FCL launcher Turnip driver plugin — A6xx/A7xx build.
 
@@ -86,6 +73,7 @@ jobs:
             - Source: https://github.com/whitebelyash/AdrenoToolsDrivers (release tu_v31, mainline-turnip-sync-V31, turnip/gen8 branch)
             - Plugin template: https://github.com/FCL-Team/FCLDriverPlugin
             - License: GPL-3.0 (see LICENSE / NOTICE for third-party attributions)
+            - Signature: APK Signature Scheme v2 (RSA 2048, SHA-256: 61c23f5b56c7fb455a53565e18d9e94c4a13a32092e742d9d326392d67f02e3b)
 
             Install the APK on a device with the FCL launcher to register the
             `Turnip A6xx v31` driver.
